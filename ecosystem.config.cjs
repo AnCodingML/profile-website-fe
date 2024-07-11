@@ -7,11 +7,11 @@ module.exports = {
        watch: false,
        env: {
          NODE_ENV: 'development',
-         PORT: 3001, // ganti dengan port yang diinginkan
+         PORT: 4000, // ganti dengan port yang diinginkan
        },
        env_production: {
          NODE_ENV: 'production',
-         PORT: 3001, // ganti dengan port yang diinginkan
+         PORT: 4000, // ganti dengan port yang diinginkan
        },
      },
    ],
