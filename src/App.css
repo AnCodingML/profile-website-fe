@@ -58,6 +58,19 @@ body {
   height: 500px;
 }
 
+#about-us__section-1 {
+  height: 600px;
+  width: 100%;
+  background-color: rgb(0, 0, 0, .5);
+  border-radius: 40px;
+}
+
+#about-us__section-1 img {
+  background-color: rgb(255, 255, 255, .5);
+  border-radius: 30px;
+}
+
+
 .fs__hero {
   font-size: 100px;
   font-family: 'Orbitron';
@@ -75,4 +88,5 @@ body {
       /* 0 0 50px #dcfc67, */
       /* 0 0 60px #dcfc67; */
 }
+
 

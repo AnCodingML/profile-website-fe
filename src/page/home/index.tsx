@@ -5,8 +5,11 @@ import particlesOptions from "../../assets/json/particles.json";
 import { ISourceOptions } from "@tsparticles/engine";
 import { Parallax, ParallaxLayer, IParallax } from '@react-spring/parallax';
 import { styled } from '@stitches/react';
-import { useTrail, animated } from '@react-spring/web';
-import { Container } from "react-bootstrap";
+import { useSpring, useTrail, animated, easings, useTransition  } from '@react-spring/web';
+import { Container, Image, Button } from "react-bootstrap";
+import Satelit from '../../assets/icon/satelit.svg';
+import Profile from '../../assets/img/photo.jpg';
+import * as Dialog from '@radix-ui/react-dialog'
   
 const Box = styled('div', {
   position: 'relative',
@@ -72,6 +75,25 @@ function AboutUs() {
     return () => clearInterval(interval); // Bersihkan interval saat komponen dibongkar
   }, [api]);
 
+  const springs = useSpring({
+    from: { x: -50, y: 25 },
+    to: async (next) => {
+      while (1) {
+        await next({ x: 50, y: 0 });
+        await next({ x: -50, y: 25 });
+      }
+    },
+    config: {
+      duration: 4000,
+      easing: easings.easeInOutSine,
+    },
+    loop: true,
+  });
+
+  const handleDialogChange = () => {
+    // window.open(`localhost:4000${Profile}`, '_blank');
+  }
+
   useEffect(() => {
     initParticlesEngine(async (engine) => {
       await loadFull(engine);
@@ -128,9 +150,114 @@ function AboutUs() {
             </div>
           </Container>
         </ParallaxLayer>
+        <ParallaxLayer offset={0.1} speed={-0.8}>
+          <Container className="d-flex justify-content-end pe-5">
+            <animated.div style={{...springs}}>
+              <Image src={Satelit} alt="" />
+            </animated.div>
+          </Container>
+        </ParallaxLayer>
+        <ParallaxLayer offset={1} speed={0.1}>
+          <Container id="about-us__section-1" className="d-flex p-5 gap-5">
+              <Image src={Profile}/>
+              <div className="fs-3 text-white d-grid align-items-evenly">
+                <div>
+                  Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged.
+                </div>
+                <div className="align-self-end">
+                  <Dialog.Root onOpenChange={handleDialogChange}>
+                    <Trigger className="col-12">
+                      <TriggerShadow />
+                      <TriggerEdge />
+                      <TriggerLabel  >My Resume</TriggerLabel>
+                    </Trigger>
+                    <Dialog.Portal forceMount>
+                      
+                    </Dialog.Portal>
+                  </Dialog.Root>
+                </div>
+                
+              </div>
+          </Container>
+        </ParallaxLayer>
       </Parallax> 
     </>
   );
 }
+
+const TriggerPart = styled('span', {
+  position: 'absolute',
+  top: 0,
+  left: 0,
+  width: '100%',
+  height: '100%',
+  borderRadius: 8,
+})
+
+const TriggerShadow = styled(TriggerPart, {
+  background: 'hsl(0deg 0% 0% / 0.5)',
+  transform: 'translateY(4px)',
+  transition: 'transform 250ms ease-out',
+})
+
+const TriggerEdge = styled(TriggerPart, {
+  background: `linear-gradient(
+      to left,
+      hsl(0deg 0% 30%) 0%,
+      hsl(0deg 0% 60%) 8%,
+      hsl(0deg 0% 60%) 92%,
+      hsl(0deg 0% 30%) 100%
+    )`,
+})
+
+const TriggerLabel = styled('span', {
+  display: 'block',
+  position: 'relative',
+  borderRadius: 8,
+  color: '#569AFF',
+  fontSize: '25px',
+  padding: '12px 24px',
+  background: '#fafafa',
+  transform: 'translateY(-7px)',
+  width: '100%',
+  userSelect: 'none',
+  transition: 'transform 250ms ease-out',
+  fontFamily: 'Orbitron',
+  fontWeight: 700,
+})
+
+const Trigger = styled(Dialog.Trigger, {
+  border: 'none',
+  fontWeight: 600,
+  cursor: 'pointer',
+  background: 'transparent',
+  position: 'relative',
+  padding: 0,
+  transition: 'filter 250ms ease-out',
+
+  '&:hover': {
+    filter: 'brightness(110%)',
+
+    [`& ${TriggerLabel}`]: {
+      transform: 'translateY(-6px)',
+    },
+
+    [`& ${TriggerShadow}`]: {
+      transform: 'translateY(4px)',
+    },
+  },
+
+  '&:active': {
+    [`& ${TriggerLabel}`]: {
+      transform: 'translateY(-2px)',
+      transition: 'transform 34ms',
+    },
+
+    [`& ${TriggerShadow}`]: {
+      transform: 'translateY(1px)',
+      transition: 'transform 34ms',
+    },
+  },
+})
 
 export default AboutUs;
