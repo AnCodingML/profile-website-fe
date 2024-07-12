@@ -5,6 +5,10 @@ export const Box = styled('div', {
   position: 'relative',
   height: 50,
   width: 50,
+  '@media screen and (max-width: 992px)': {
+    height: 25,
+    width: 25,
+  },
 });
 
 const SharedStyles = {
@@ -20,6 +24,10 @@ const SharedStyles = {
   backfaceVisibility: 'hidden',
   fontSize: 45,
   color: '#fff',
+
+ '@media screen and (max-width: 992px)': {
+    fontSize: 'calc(20px + 2vw)',
+  },
 };
 
 export const FrontBox = styled(animated.div, {

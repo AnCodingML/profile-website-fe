@@ -9,6 +9,13 @@ import { Container, Image } from "react-bootstrap";
 import Satelit from '../../assets/icon/satelit.svg';
 import Profile from '../../assets/img/photo.jpg';
 import Frontend from '../../assets/icon/frontend.svg';
+import Javascript from '../../assets/icon/javascript.svg';
+import Typescript from '../../assets/icon/Typescript.svg';
+import React from '../../assets/icon/react.svg';
+import Html5 from '../../assets/icon/HTML5.svg';
+import Css from '../../assets/icon/CSS.svg'
+import Bootstrap from '../../assets/icon/bootstrap.svg';
+import Tailwind from '../../assets/icon/tailwind.svg';
 
 import {
   Box,
@@ -88,10 +95,10 @@ function AboutUs() {
             <Particles className="position-absolute" options={particlesOptions as unknown as ISourceOptions} />
           )}
         </ParallaxLayer>
-        <ParallaxLayer offset={0.2} speed={-0.1}>
+        <ParallaxLayer offset={0.2}>
           <Container>
             <h1 className="text-white fs__hero">Hi. I am <b className="glow__yellow">Andi</b></h1>
-            <div className="d-flex gap-4">
+            <div className="d-flex gap-2 gap-lg-4">
               {trail.map(({ rotateX }, i) => (
                 <Box key={i}>
                   <FrontBox
@@ -124,27 +131,36 @@ function AboutUs() {
                 </Box>
               ))}
             </div>
-            <div className="text-white col-6 mt-5 fs-5 lh-lg" style={{fontFamily: 'Orbitron', fontWeight: 300}}>
+            <div id="hero__desc" className="text-white col-lg-6 mt-5 lh-lg">
                 As a passionate and experienced fullstack programmer, I specialize in creating seamless, efficient, and user-friendly web solutions. With a strong foundation in both front-end and back-end technologies, I bring ideas to life by crafting innovative and functional digital experiences. Let's transform your vision into reality
             </div>
           </Container>
         </ParallaxLayer>
         <ParallaxLayer offset={0.1} speed={-0.7}>
           <Container className="d-flex justify-content-end pe-5">
-            <animated.div style={{...springsSatelit}}>
-              <Image src={Satelit} alt="satelit" />
+            <animated.div  style={{...springsSatelit}}>
+              <Image id="img-satelit" src={Satelit} alt="satelit" />
             </animated.div>
           </Container>
         </ParallaxLayer>
-        <ParallaxLayer offset={1} speed={0.1}>
-          <Container className="d-flex gap-4">
-            <div className="skill-set p-5 rounded-4">
-              <div className="d-flex justify-content-center">
+        <ParallaxLayer offset={1}>
+          <Container className="d-lg-flex d-grid gap-4">
+            <div className="skill-set p-sm-5 p-4 rounded-4">
+              <div className="fs-3 text-white fw-bold rounded-4">Frontend</div>
+              <div className="d-flex justify-content-center  mt-4">
                 <Image src={Frontend} alt="front-end"/>
               </div>
-              <div className="fs-3 text-white fw-bold rounded-4 mt-5">Frontend</div>
-              <div className="text-white lh-lg text-justify mt-3">
+              <div className="text-white lh-lg text-justify mt-5">
                 As a front-end developer, I am skilled at building responsive and interactive user interfaces using React and TypeScript, and have a deep understanding of modern web design principles.
+              </div>
+              <div className="d-flex justify-content-center gap-4 flex-wrap mt-5 align-items-end">
+                <Image src={Html5} height={62}/>
+                <Image src={Css} height={62}/>
+                <Image src={Javascript} height={50}/>
+                <Image src={Typescript} height={50}/>
+                <Image src={React} height={50}/>
+                <Image src={Bootstrap} height={50}/>
+                <Image src={Tailwind} width={50}/>
               </div>
             </div>
             <div className="skill-set p-4 text-center rounded-4">
@@ -152,23 +168,6 @@ function AboutUs() {
             </div>
             <div className="skill-set p-4 text-center rounded-4">
               <div className="fs-3 text-white fw-bold">DevOps</div>
-            </div>
-          </Container>
-        </ParallaxLayer>
-        <ParallaxLayer offset={2.3}>
-          <Container id="about-us__section-1" className="d-flex p-5 gap-5">
-            <Image src={Profile}/>
-            <div className="fs-3 text-white d-grid align-items-evenly">
-              <div>
-                Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged.
-              </div>
-              <div className="align-self-end">
-                <Trigger className="col-12">
-                  <TriggerShadow />
-                  <TriggerEdge />
-                  <TriggerLabel  >My Resume</TriggerLabel>
-                </Trigger>
-              </div>   
             </div>
           </Container>
         </ParallaxLayer>

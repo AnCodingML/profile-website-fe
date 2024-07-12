@@ -58,6 +58,11 @@ body {
   height: 500px;
 }
 
+#hero__desc {
+  font-size: 20px;
+  font-weight: 300;
+}
+
 #about-us__section-1 {
   height: 600px;
   width: 100%;
@@ -68,6 +73,11 @@ body {
 #about-us__section-1 img {
   background-color: rgb(255, 255, 255, .5);
   border-radius: 30px;
+}
+
+#img-satelit {
+  height: 280px;
+  width: 280px;
 }
 
 .skill-set {
@@ -81,7 +91,7 @@ body {
 }
 
 .fs__hero {
-  font-size: 100px;
+  font-size: calc(70px + 2vw);
   font-family: 'Orbitron';
   font-weight: 700;
 }
@@ -96,6 +106,21 @@ body {
       /* 0 0 40px #dcfc67, */
       /* 0 0 50px #dcfc67, */
       /* 0 0 60px #dcfc67; */
+}
+
+@media screen and (max-width: 992px) {
+  .fs__hero {
+    font-size: calc(40px + 4vw);
+  }
+  #hero__desc {
+    font-size: 15px;
+  }
+  #img-satelit {
+    height: 15vw;
+    width: 15vw;
+    z-index: -1;
+    position: absolute;
+  }
 }
 
 
