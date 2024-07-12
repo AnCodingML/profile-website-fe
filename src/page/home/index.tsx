@@ -146,7 +146,7 @@ function AboutUs() {
         <ParallaxLayer offset={1}>
           <Container className="d-lg-flex d-grid gap-4">
             <div className="skill-set p-sm-5 p-4 rounded-4">
-              <div className="fs-3 text-white fw-bold rounded-4">Frontend</div>
+              <div className="fs-1 text-white fw-bold rounded-4 text-center">Frontend</div>
               <div className="d-flex justify-content-center  mt-4">
                 <Image src={Frontend} alt="front-end"/>
               </div>
