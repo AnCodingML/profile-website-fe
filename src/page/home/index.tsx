@@ -4,50 +4,27 @@ import { loadFull } from "tsparticles";
 import particlesOptions from "../../assets/json/particles.json";
 import { ISourceOptions } from "@tsparticles/engine";
 import { Parallax, ParallaxLayer, IParallax } from '@react-spring/parallax';
-import { styled } from '@stitches/react';
-import { useSpring, useTrail, animated, easings, useTransition  } from '@react-spring/web';
-import { Container, Image, Button } from "react-bootstrap";
+import { useSpring, useTrail, animated, easings } from '@react-spring/web';
+import { Container, Image } from "react-bootstrap";
 import Satelit from '../../assets/icon/satelit.svg';
 import Profile from '../../assets/img/photo.jpg';
-import * as Dialog from '@radix-ui/react-dialog'
-  
-const Box = styled('div', {
-  position: 'relative',
-  height: 50,
-  width: 50,
-});
+import Frontend from '../../assets/icon/frontend.svg';
 
-const SharedStyles = {
-  width: '100%',
-  height: '100%',
-  position: 'absolute',
-  inset: 0,
-  display: 'flex',
-  justifyContent: 'center',
-  alignItems: 'center',
-  fontFamily: 'Orbitron',
-  fontWeight: 800,
-  backfaceVisibility: 'hidden',
-  fontSize: 45,
-  color: '#fff',
-};
-
-const FrontBox = styled(animated.div, {
-  ...SharedStyles,
-});
-
-const MiddleBox = styled(animated.div, {
-  ...SharedStyles,
-});
-
-const BackBox = styled(animated.div, {
-  ...SharedStyles,
-});
+import {
+  Box,
+  FrontBox,
+  MiddleBox,
+  BackBox,
+  Trigger,
+  TriggerShadow,
+  TriggerEdge,
+  TriggerLabel,
+} from '../../styles.tsx';
 
 const items = ['F', 'U', 'L', 'L', 'S', 'T', 'A', 'C', 'K'];
 const items2 = ['W', 'E', 'B', 'S', 'I', 'T', 'E'];
 const items3 = ['D', 'E', 'V', 'E', 'L', 'O', 'P', 'E', 'R'];
-  
+
 function AboutUs() {
   const [init, setInit] = useState(false);    
   const parallax = useRef<IParallax>(null!);
@@ -70,12 +47,12 @@ function AboutUs() {
         api.start({ rotateX: 0 });
         isFlipped.current = 0;
       }
-    }, 2000); // Ganti 2000 dengan interval waktu yang diinginkan (dalam milidetik)
+    }, 2000);
 
-    return () => clearInterval(interval); // Bersihkan interval saat komponen dibongkar
+    return () => clearInterval(interval);
   }, [api]);
 
-  const springs = useSpring({
+  const springsSatelit = useSpring({
     from: { x: -50, y: 25 },
     to: async (next) => {
       while (1) {
@@ -104,8 +81,7 @@ function AboutUs() {
 
   return (
     <>  
-      <Parallax ref={parallax} pages={3} style={{ background: '#0E0E52' }}>
-        {/* <ParallaxLayer offset={0.7} speed={1} style={{ backgroundColor: '#805E73' }} /> */}
+      <Parallax ref={parallax} pages={3} style={{ background: '#0E0E52', fontFamily:'Orbitron' }}>
         <ParallaxLayer offset={2} speed={1} style={{ backgroundColor: '#87BCDE' }} />
         <ParallaxLayer offset={0} speed={0} factor={3} style={{ position: 'relative' }}>
           {init && (
@@ -148,116 +124,57 @@ function AboutUs() {
                 </Box>
               ))}
             </div>
+            <div className="text-white col-6 mt-5 fs-5 lh-lg" style={{fontFamily: 'Orbitron', fontWeight: 300}}>
+                As a passionate and experienced fullstack programmer, I specialize in creating seamless, efficient, and user-friendly web solutions. With a strong foundation in both front-end and back-end technologies, I bring ideas to life by crafting innovative and functional digital experiences. Let's transform your vision into reality
+            </div>
           </Container>
         </ParallaxLayer>
-        <ParallaxLayer offset={0.1} speed={-0.8}>
+        <ParallaxLayer offset={0.1} speed={-0.7}>
           <Container className="d-flex justify-content-end pe-5">
-            <animated.div style={{...springs}}>
-              <Image src={Satelit} alt="" />
+            <animated.div style={{...springsSatelit}}>
+              <Image src={Satelit} alt="satelit" />
             </animated.div>
           </Container>
         </ParallaxLayer>
         <ParallaxLayer offset={1} speed={0.1}>
-          <Container id="about-us__section-1" className="d-flex p-5 gap-5">
-              <Image src={Profile}/>
-              <div className="fs-3 text-white d-grid align-items-evenly">
-                <div>
-                  Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged.
-                </div>
-                <div className="align-self-end">
-                  <Dialog.Root onOpenChange={handleDialogChange}>
-                    <Trigger className="col-12">
-                      <TriggerShadow />
-                      <TriggerEdge />
-                      <TriggerLabel  >My Resume</TriggerLabel>
-                    </Trigger>
-                    <Dialog.Portal forceMount>
-                      
-                    </Dialog.Portal>
-                  </Dialog.Root>
-                </div>
-                
+          <Container className="d-flex gap-4">
+            <div className="skill-set p-5 rounded-4">
+              <div className="d-flex justify-content-center">
+                <Image src={Frontend} alt="front-end"/>
               </div>
+              <div className="fs-3 text-white fw-bold rounded-4 mt-5">Frontend</div>
+              <div className="text-white lh-lg text-justify mt-3">
+                As a front-end developer, I am skilled at building responsive and interactive user interfaces using React and TypeScript, and have a deep understanding of modern web design principles.
+              </div>
+            </div>
+            <div className="skill-set p-4 text-center rounded-4">
+              <div className="fs-3 text-white fw-bold">Backend</div>
+            </div>
+            <div className="skill-set p-4 text-center rounded-4">
+              <div className="fs-3 text-white fw-bold">DevOps</div>
+            </div>
+          </Container>
+        </ParallaxLayer>
+        <ParallaxLayer offset={2.3}>
+          <Container id="about-us__section-1" className="d-flex p-5 gap-5">
+            <Image src={Profile}/>
+            <div className="fs-3 text-white d-grid align-items-evenly">
+              <div>
+                Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged.
+              </div>
+              <div className="align-self-end">
+                <Trigger className="col-12">
+                  <TriggerShadow />
+                  <TriggerEdge />
+                  <TriggerLabel  >My Resume</TriggerLabel>
+                </Trigger>
+              </div>   
+            </div>
           </Container>
         </ParallaxLayer>
       </Parallax> 
     </>
   );
 }
-
-const TriggerPart = styled('span', {
-  position: 'absolute',
-  top: 0,
-  left: 0,
-  width: '100%',
-  height: '100%',
-  borderRadius: 8,
-})
-
-const TriggerShadow = styled(TriggerPart, {
-  background: 'hsl(0deg 0% 0% / 0.5)',
-  transform: 'translateY(4px)',
-  transition: 'transform 250ms ease-out',
-})
-
-const TriggerEdge = styled(TriggerPart, {
-  background: `linear-gradient(
-      to left,
-      hsl(0deg 0% 30%) 0%,
-      hsl(0deg 0% 60%) 8%,
-      hsl(0deg 0% 60%) 92%,
-      hsl(0deg 0% 30%) 100%
-    )`,
-})
-
-const TriggerLabel = styled('span', {
-  display: 'block',
-  position: 'relative',
-  borderRadius: 8,
-  color: '#569AFF',
-  fontSize: '25px',
-  padding: '12px 24px',
-  background: '#fafafa',
-  transform: 'translateY(-7px)',
-  width: '100%',
-  userSelect: 'none',
-  transition: 'transform 250ms ease-out',
-  fontFamily: 'Orbitron',
-  fontWeight: 700,
-})
-
-const Trigger = styled(Dialog.Trigger, {
-  border: 'none',
-  fontWeight: 600,
-  cursor: 'pointer',
-  background: 'transparent',
-  position: 'relative',
-  padding: 0,
-  transition: 'filter 250ms ease-out',
-
-  '&:hover': {
-    filter: 'brightness(110%)',
-
-    [`& ${TriggerLabel}`]: {
-      transform: 'translateY(-6px)',
-    },
-
-    [`& ${TriggerShadow}`]: {
-      transform: 'translateY(4px)',
-    },
-  },
-
-  '&:active': {
-    [`& ${TriggerLabel}`]: {
-      transform: 'translateY(-2px)',
-      transition: 'transform 34ms',
-    },
-
-    [`& ${TriggerShadow}`]: {
-      transform: 'translateY(1px)',
-      transition: 'transform 34ms',
-    },
-  },
-})
 
 export default AboutUs;
