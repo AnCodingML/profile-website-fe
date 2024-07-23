@@ -14,10 +14,11 @@ import Ground3 from '../../assets/img/ground-3.svg';
 import Ground2 from '../../assets/img/ground-2.svg';
 import Ground1 from '../../assets/img/ground-1.svg';
 import Mountain from '../../assets/img/mountain.svg';
+import {Linkedin, Instagram, Email, Github, Whatsapp} from '../../assets/icon/icon.tsx';
+import { Link } from "react-router-dom";
 
 function AboutUs() {
   const [init, setInit] = useState(false);
-  const [windowHeight, setWindowHeight] = useState(window.innerHeight);
   const parallax = useRef<IParallax>(null!);
 
   const springsSatelit = useSpring({
@@ -41,22 +42,12 @@ function AboutUs() {
     }).then(() => {
       setInit(true);
     });
-
-
-    window.addEventListener('resize', calculateOffset);
-
-    return () => window.removeEventListener('resize', calculateOffset);
   }, []);
-
-  const calculateOffset = (value) => {
-    console.log((value) + (windowHeight / 1000))
-    return (value) + (windowHeight / 10000);
-  };
 
   return (
     <>
       <Parallax id="parallax" ref={parallax} pages={3} style={{ background: '#0E0E52', fontFamily: 'Orbitron' }}>
-        <ParallaxLayer offset={2} speed={1} style={{ backgroundColor: '#87BCDE' }} />
+        <ParallaxLayer offset={2} speed={0.5} style={{ backgroundColor: '#87BCDE' }} />
         <ParallaxLayer offset={0} speed={0} factor={3} style={{ position: 'relative' }}>
           {init && (
             <Particles className="position-absolute" options={particlesOptions as unknown as ISourceOptions} />
@@ -80,8 +71,17 @@ function AboutUs() {
             </animated.div>
           </Container>
         </ParallaxLayer>
-        <ParallaxLayer offset={1}>
+        <ParallaxLayer offset={1.05} speed={-0.05}>
           <Slide />
+        </ParallaxLayer>
+        <ParallaxLayer offset={2.2} speed={1}>
+          <div className="container d-flex flex-wrap justify-content-center gap-lg-5 gap-4">
+            <Link target="_blank" className="social-media" to="https://www.linkedin.com/in/andi-eka-nugraha/"><Linkedin/></Link>
+            <Link target="_blank" className="social-media" to="mailto:an.ekanugraha@gmail.com"><Email/></Link>
+            <Link target="_blank" className="social-media" to="https://github.com/AndiEkaNugraha"><Github/></Link>
+            <Link target="_blank" className="social-media" to="https://www.instagram.com/andie_n05"><Instagram/></Link>
+            <Link target="_blank" className="social-media" to="https://wa.me/6287726944689"><Whatsapp/></Link>
+          </div>
         </ParallaxLayer>
         <ParallaxLayer offset={2.5} speed={1}>
           <Image src={Mountain} alt="mountain" width={'100%'} style={{minWidth:'1606px'}} />

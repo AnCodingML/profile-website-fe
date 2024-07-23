@@ -79,7 +79,24 @@ body {
   height: 280px;
   width: 280px;
 }
-
+.social-media {
+  height: 100px;
+  width: 100px;
+  color: rgb(23, 81, 136)!important;
+  background-color: rgb(255, 255, 255, .5);
+  border-radius: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-decoration: none;
+  transition: all .2s ease-in-out;
+}
+.social-media:hover {
+  background-color: rgb(255, 255, 255, 1);
+  text-decoration: none;
+  transform: scale(1.1);
+  transition: all .2s ease-in-out;
+}
 .skill-set {
   /* height: 300px; */
   width: 370px;
@@ -120,6 +137,10 @@ body {
     width: 15vw;
     z-index: -1;
     position: absolute;
+  }
+  .social-media {
+    height: 80px;
+    width: 80px;
   }
   .skill-set {
     width: 80vw;
